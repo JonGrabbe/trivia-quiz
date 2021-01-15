@@ -1,0 +1,158 @@
+body {
+    font-family: 'Rubik', sans-serif;
+    background-color: #F7F7F7;
+}
+
+
+/* ---- global styles ---- */
+.form-field-default {
+    padding: 5px;
+    border: none;
+    box-shadow: 3px 3px 8px lightgrey;
+    background-color: white;
+    border-radius: 5px;
+}
+.start-button {
+    width: 300px;
+    margin: auto;
+    display: block;
+    margin-top: 60px;
+}
+.small-button {
+    padding-left: 35px;
+    padding-right: 35px;
+}
+h1 {
+    margin: auto;
+}
+
+
+/* ---- quiz start ---- */
+.start-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 60%;
+    margin: auto;
+}
+.form-item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-top: 25px;
+}
+.form-label-start {
+    margin-bottom: 10px;
+}
+
+.todo-app-container {
+    padding: 35px;
+    background-color: beige;
+}
+.true-text-color {
+    color: lime;
+}
+.false-text-color {
+    color: red;
+}
+
+
+/* ---- quiz ---- */
+.quiz-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 60%;
+    margin: auto;
+}
+#start-quiz-button {
+    min-width: 160px;
+}
+.quiz-data-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+}
+.quiz-data-container * {
+    margin: 30px;
+}
+.quiz-data-container h2 {
+    font-size: inherit;
+}
+
+
+/* --- question item container --- */
+.col2-container {
+    display: flex;
+    justify-content: center;
+}
+.col2-container .item {
+    margin: 35px;
+}
+
+
+
+
+
+
+
+
+/* ---- tablet ---- */
+@media(max-width: 1430px) {
+    .quiz-data-container {
+        /* flex-direction: column; */
+    }
+}
+
+
+/* ---- mobile ---- */
+@media(max-width: 650px) {
+    .start-container {        
+        width: initial;
+    }
+    /* -- quiz --- */
+    .quiz-data-container * {
+        margin: initial;
+        margin-top: 20px;
+    }
+    .quiz-container {
+        width: initial;
+    }
+    .quiz-container h2 {
+        margin: initial;
+        margin-top: 20px;
+    }
+    .quiz-data-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #start-quiz-button {
+        align-self: center;
+        width: initial;
+    }
+    .col2-container {
+        flex-direction: column;
+    }
+    .col2-container .item {
+        margin: initial;
+        margin-top: 20px;
+    }
+    .small-button {
+        width: 150px;
+    }
+    #nav-buttons-container {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    #nav-buttons-container button {
+        width: initial;
+    }
+    .question-item-container {
+        width: 100%;
+    }
+}
