@@ -10,7 +10,7 @@ export default function RadioButton(props) {
     return (
         <div className="radio-button-container" key={props.text}>
             <input type="radio" name="question" id={props.text} value={props.text} onChange={props.getRadioValue}/>
-            <label htmlFor={props.text} className={labelClassName}>{props.text}</label>
+            <label dangerouslySetInnerHTML={{__html: props.text}} htmlFor={props.text} className={labelClassName}></label>
         </div>
     );
 }

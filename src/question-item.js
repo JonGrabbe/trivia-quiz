@@ -30,7 +30,8 @@ export default class QuestionItem extends React.Component {
                     <button className="item form-field-default small-button" onClick={this.props.next}>next</button>
                 </div>
 
-                <p className="question">{""+this.props.question.question}</p>
+                {/* <p className="question">{""+this.props.question.question}</p> */}
+                <p className="question" dangerouslySetInnerHTML={{__html: `${this.props.question.question}`}}></p>
 
                 <p>{this.props.question.isCorrect ? 'correct' : null}</p>
                 <p>{this.props.question.isCorrect === false ? 'wrong! the correct answer is: '+this.props.question.correct_answer : null}</p>
