@@ -199,7 +199,6 @@ export default class App extends React.Component {
     render() {
         let categoryName;
         if(this.state.category) {
-            console.log('sfshfksjdhfdksjhfsdkfdsjh')
             let catId;
             this.state.categories.forEach((item, index) => {
                 if(item.id === parseInt(this.state.category)) {
@@ -209,7 +208,6 @@ export default class App extends React.Component {
             if(catId !== undefined) {
                 categoryName = this.state.categories[catId].name;
             }
-            console.log(categoryName)
         }
 
         //response error

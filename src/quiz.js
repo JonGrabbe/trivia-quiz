@@ -16,7 +16,6 @@ export default class Quiz extends React.Component {
     nextQuestion() {
         this.setState(function(prevState) {
             if(this.state.questionNum+1 <= this.state.maxQuestion) {
-                console.log('11111')
                 return {
                     questionNum: this.state.questionNum + 1
                 }
@@ -53,7 +52,6 @@ export default class Quiz extends React.Component {
         let isCorrect;
         //let answer = e.currentTarget.value;
         let answer = this.props.radioValue;
-        console.log('correct answer: ', answer)
         let currentObj = this.props.questionsArray.results[this.state.questionNum];
         if(answer === currentObj.correct_answer) {
             isCorrect = true;
