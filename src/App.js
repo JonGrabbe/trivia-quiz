@@ -14,6 +14,7 @@ class App extends React.Component {
     this.getQuestionFilters = this.getQuestionFilters.bind(this);
     this.getEndpoint = this.getEndpoint.bind(this);
     this.getQuestionsData = this.getQuestionsData.bind(this);
+    this.changeQuiz = this.changeQuiz.bind(this);
   }
 
   async getCategoriesData() {
@@ -100,15 +101,33 @@ class App extends React.Component {
     }
   }
 
+  changeQuiz() {
+    this.setState(function() {
+      return {
+        quizStarted: false,
+        questionsData: null
+      }
+    })
+  }
+
   render() {
-    return(
+    let start = (
       <Start 
         categories={this.state.categories}
         history={this.state.history}
         handleChange={this.getQuestionFilters}
         startQuiz={this.getQuestionsData}
       />
-    )
+    );
+    let quiz = (
+      <Quiz 
+        handleClick={this.changeQuiz}
+      />
+    );
+    let quizStarted = this.state.quizStarted;
+    return(
+      {quizStarted ? quiz : start}
+    );
   }
 }
 
