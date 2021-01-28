@@ -7,17 +7,8 @@ export default class Quiz extends React.Component {
         this.state = {
             currentQuestionIndex: 0
         }
-        this.next = this.next.bind(this);
     }
 
-
-    checkAnswer(e) {
-        let currentQuestion = this.props.questions.results[this.state.currentQuestionIndex];
-        let val = e.currentTarget.value;
-        if(val === currentQuestion.correct_answer) {
-            currentQuestion.isCorrect = true;
-        }
-    }
 
     render() {
         //let currentQuestion = this.props.questions.results[this.state.currentQuestionIndex];

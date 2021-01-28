@@ -152,29 +152,29 @@ class App extends React.Component {
   }
 
   render() {
-    let start = (
-      <Start 
-        categories={this.state.categories}
-        history={this.state.history}
-        handleChange={this.getQuestionFilters}
-        startQuiz={this.getQuestionsData}
-        errors={this.state.errorMessage}
-      />
-    );
-    let quiz = (
-      <Quiz 
-        handleClick={this.changeQuiz}
-        currentQuestion={this.state.questionsData.results[this.state.questionIndex]}
-        next={this.nextQuestion}
-      />
-    );
-    let quizStarted = this.state.quizStarted;
-    let html;
-    if(quizStarted) {
-      html = quiz
-    } else {
-      html = start
-    }
+    // let start = (
+    //   <Start 
+    //     categories={this.state.categories}
+    //     history={this.state.history}
+    //     handleChange={this.getQuestionFilters}
+    //     startQuiz={this.getQuestionsData}
+    //     errors={this.state.errorMessage}
+    //   />
+    // );
+    // let quiz = (
+    //   <Quiz 
+    //     handleClick={this.changeQuiz}
+    //     currentQuestion={this.state.questionsData.results[this.state.questionIndex]}
+    //     next={this.nextQuestion}
+    //   />
+    // );
+    // let quizStarted = this.state.quizStarted;
+    // let html;
+    // if(quizStarted) {
+    //   html = quiz
+    // } else {
+    //   html = start
+    // }
     return (
       <div>
         {
@@ -184,11 +184,13 @@ class App extends React.Component {
                                       next={this.nextQuestion}
                                     />
                                   :
-                                  <Quiz 
-                                    handleClick={this.changeQuiz}
-                                    currentQuestion={this.state.questionsData.results[this.state.questionIndex]}
-                                    next={this.nextQuestion}
-                                  /> 
+                                  <Start 
+                                    categories={this.state.categories}
+                                    history={this.state.history}
+                                    handleChange={this.getQuestionFilters}
+                                    startQuiz={this.getQuestionsData}
+                                    errors={this.state.errorMessage}
+                                  />
         }
       </div>
     )
