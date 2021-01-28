@@ -8,7 +8,8 @@ class App extends React.Component {
       categories: undefined,
       history: 'ddd',
       searchFilters: {},
-      defaultQuestionLimit: 10
+      defaultQuestionLimit: 10,
+      quizStarted: false
     }
     this.getQuestionFilters = this.getQuestionFilters.bind(this);
     this.getEndpoint = this.getEndpoint.bind(this);
@@ -67,10 +68,29 @@ class App extends React.Component {
       const response = await fetch(endpoint);
       if(response.ok) {
         const jsonResponse = await response.json();
-        this.setState({
-          questionsData: jsonResponse
-        })
-        console.log(jsonResponse)
+        if(jsonResponse.response_code === 0) {
+          this.setState({
+            questionsData: jsonResponse,
+            errorMessage: null,
+            quizStarted: true
+          })
+          return true;  
+        } else if(jsonResponse.response_code === 1) {
+          this.setState(function() {
+            return {
+              errorMessage: 'no results found with the current search parameters'
+            }
+          })
+          return false;
+        } else if(jsonResponse.response_code === 2) {
+          this.setState(function() {
+            return {
+              errorMessage: 'system error'
+            }
+          })
+          return false;
+        }
+        //console.log(jsonResponse)
         //return jsonResponse;
         return;
       }
