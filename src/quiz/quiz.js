@@ -8,7 +8,10 @@ export default class Quiz extends React.Component {
     render() {
         return (
             <div id="quiz-container">
-                <Header handleClick={this.props.handleClick}/>
+                <Header handleClick={this.props.handleClick} questions={this.props.questions}/>
+                <div id="quiz-body-container">
+                    <p>{this.props.questions.results[0].question}</p>
+                </div>
             </div>
         );
     }

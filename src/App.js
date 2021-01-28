@@ -1,5 +1,6 @@
 import React from 'react';
 import Start from './start/start';
+import Quiz from './quiz/quiz';
 
 class App extends React.Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class App extends React.Component {
       history: 'ddd',
       searchFilters: {},
       defaultQuestionLimit: 10,
-      quizStarted: false
+      quizStarted: false,
+      currentQuestionIndex: 0
     }
     this.getQuestionFilters = this.getQuestionFilters.bind(this);
     this.getEndpoint = this.getEndpoint.bind(this);
@@ -117,17 +119,25 @@ class App extends React.Component {
         history={this.state.history}
         handleChange={this.getQuestionFilters}
         startQuiz={this.getQuestionsData}
+        errors={this.state.errorMessage}
       />
     );
     let quiz = (
       <Quiz 
         handleClick={this.changeQuiz}
+        questions={this.state.questionsData}
       />
     );
     let quizStarted = this.state.quizStarted;
-    return(
-      {quizStarted ? quiz : start}
-    );
+    let html;
+    if(quizStarted) {
+      html = quiz
+    } else {
+      html = start
+    }
+    return (
+      <div>{html}</div>
+    )
   }
 }
 
