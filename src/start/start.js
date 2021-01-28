@@ -55,8 +55,7 @@ export default class Start extends React.Component {
                             </p>
                         </div>
                     </div>
-                    <button id="start-quiz-button" className="main-button">start new quiz</button>
-                    <div className="create-quiz-form-item-container"></div>
+                    <button id="start-quiz-button" className="main-button" onClick={this.props.startQuiz}>start new quiz</button>
                 </div>
                 <div className="col right-col start-history-container">
 

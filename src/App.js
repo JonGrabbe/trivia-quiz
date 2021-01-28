@@ -11,6 +11,8 @@ class App extends React.Component {
       defaultQuestionLimit: 10
     }
     this.getQuestionFilters = this.getQuestionFilters.bind(this);
+    this.getEndpoint = this.getEndpoint.bind(this);
+    this.getQuestionsData = this.getQuestionsData.bind(this);
   }
 
   async getCategoriesData() {
@@ -21,7 +23,7 @@ class App extends React.Component {
         this.setState({
           categories: jsonResponse.trivia_categories
         })
-        console.log(jsonResponse)
+        // console.log(jsonResponse)
         //return jsonResponse;
         return;
       }
@@ -47,8 +49,35 @@ class App extends React.Component {
     this.getCategoriesData()
   }
 
-  getQuestionsData() {
+  getEndpoint() {
+    let endpoint = 'https://opentdb.com/api.php?amount='+this.state.defaultQuestionLimit;
+    for(let property in this.state.searchFilters) {
+      if(this.state.searchFilters[property]) {
+        endpoint+='&'+property+'='+this.state.searchFilters[property]
+      }
+    }
+    return endpoint
+    // console.log(endpoint)
+  }
 
+  async getQuestionsData() {
+    const endpoint = this.getEndpoint();
+    console.log(endpoint)
+    try {
+      const response = await fetch(endpoint);
+      if(response.ok) {
+        const jsonResponse = await response.json();
+        this.setState({
+          questionsData: jsonResponse
+        })
+        console.log(jsonResponse)
+        //return jsonResponse;
+        return;
+      }
+      throw new Error('Request failed!');
+    } catch(error) {
+      console.log(error)
+    }
   }
 
   render() {
@@ -57,6 +86,7 @@ class App extends React.Component {
         categories={this.state.categories}
         history={this.state.history}
         handleChange={this.getQuestionFilters}
+        startQuiz={this.getQuestionsData}
       />
     )
   }

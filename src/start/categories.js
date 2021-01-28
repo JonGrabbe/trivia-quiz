@@ -5,6 +5,7 @@ export default function Categories(props) {
           <div className="create-quiz-form-item-container">
             <label htmlFor="categories-select" className="new-quiz-form-item-heading">Categories</label>
             <select name="category" id="categories-select" onChange={props.handleChange}>
+                <option className="categories-option" value="">any</option>
                 {props.categories.map(item => <option className="categories-option" value={item.id}>{item.name}</option>)}
             </select>
           </div>
