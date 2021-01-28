@@ -10,8 +10,7 @@ class App extends React.Component {
       history: 'ddd',
       searchFilters: {},
       defaultQuestionLimit: 10,
-      quizStarted: false,
-      currentQuestionIndex: 0
+      quizStarted: false
     }
     this.getQuestionFilters = this.getQuestionFilters.bind(this);
     this.getEndpoint = this.getEndpoint.bind(this);
@@ -111,6 +110,7 @@ class App extends React.Component {
       }
     })
   }
+  
 
   render() {
     let start = (
