@@ -18,24 +18,45 @@ export default class Start extends React.Component {
             <div className="start">
                 <Header />
                 <div className="col left-col start-new-quiz-form">
-                    <Categories categories={this.props.categories}/>
-                    <div className="new-quiz-form-item">
-                       <h2 className="new-quiz-form-item-heading">Question type</h2>
-                       <div className="new-quiz-radio-items-container">
-                            <div className="new-quiz-radio-item">
-                                <input type="radio" name="question-type" value="any" id="any"/>
-                                <label htmlFor="any">any</label>
-                            </div>
-                            <div className="new-quiz-radio-item">
-                                <input type="radio" name="question-type" value="boolean" id="boolean"/>
-                                <label htmlFor="boolean">true or false</label>
-                            </div>
-                            <div className="new-quiz-radio-item">
-                                <input type="radio" name="question-type" value="difficulty" id="difficulty"/>
-                                <label htmlFor="difficulty">Difficulty</label>
-                            </div>
-                       </div>
+                    <Categories categories={this.props.categories} handleChange={this.props.handleChange}/>
+                    <div className="create-quiz-form-item-container">
+                        <h2 className="new-quiz-form-item-heading">Question type</h2>
+                        <p className="radio-item-container">
+                            <input type="radio" name="type" value="" id="any" onChange={this.props.handleChange}/>
+                            <label htmlFor="any">any</label>
+                        </p>
+                        <p className="radio-item-container">
+                            <input type="radio" name="type" value="boolean" id="boolean" onChange={this.props.handleChange}/>
+                            <label htmlFor="boolean">true / false</label>
+                        </p>
+                        <p className="radio-item-container">
+                            <input type="radio" name="type" value="multiple" id="multiple" onChange={this.props.handleChange}/>
+                            <label htmlFor="multiple">multiple</label>
+                        </p>
                     </div>
+                    <div className="create-quiz-form-item-container">
+                        <h2 className="new-quiz-form-item-heading">Difficulty</h2>
+                        <div className="radio-items-container">
+                            <p className="radio-item-container">
+                                <input type="radio" name="difficulty" value="" id="any-difficulty" onChange={this.props.handleChange}/>
+                                <label htmlFor="any-difficulty">any</label>
+                            </p>
+                            <p className="radio-item-container">
+                                <input type="radio" name="difficulty" value="easy" id="easy" onChange={this.props.handleChange}/>
+                                <label htmlFor="easy">easy</label>
+                            </p>
+                            <p className="radio-item-container">
+                                <input type="radio" name="difficulty" value="medium" id="medium" onChange={this.props.handleChange}/>
+                                <label htmlFor="medium">medium</label>
+                            </p>
+                            <p className="radio-item-container">
+                                <input type="radio" name="difficulty" value="hard" id="hard" onChange={this.props.handleChange}/>
+                                <label htmlFor="hard">hard</label>
+                            </p>
+                        </div>
+                    </div>
+                    <button id="start-quiz-button" className="main-button">start new quiz</button>
+                    <div className="create-quiz-form-item-container"></div>
                 </div>
                 <div className="col right-col start-history-container">
 

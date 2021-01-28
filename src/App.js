@@ -6,8 +6,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       categories: undefined,
-      history: 'ddd'
+      history: 'ddd',
+      searchFilters: {},
+      defaultQuestionLimit: 10
     }
+    this.getQuestionFilters = this.getQuestionFilters.bind(this);
   }
 
   async getCategoriesData() {
@@ -20,6 +23,7 @@ class App extends React.Component {
         })
         console.log(jsonResponse)
         //return jsonResponse;
+        return;
       }
       throw new Error('Request failed!');
     } catch(error) {
@@ -27,8 +31,24 @@ class App extends React.Component {
     }
   }
 
+  getQuestionFilters(e) {
+    let elm = e.currentTarget;
+    let name = elm.name;
+    let value = elm.value;
+    this.setState(function(prevState) {
+      prevState.searchFilters[name] = value;
+      return {
+        searchFilters: prevState.searchFilters
+      }
+    })
+  }
+
   componentDidMount() {
     this.getCategoriesData()
+  }
+
+  getQuestionsData() {
+
   }
 
   render() {
@@ -36,6 +56,7 @@ class App extends React.Component {
       <Start 
         categories={this.state.categories}
         history={this.state.history}
+        handleChange={this.getQuestionFilters}
       />
     )
   }
