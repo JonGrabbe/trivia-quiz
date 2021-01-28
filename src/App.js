@@ -164,7 +164,7 @@ class App extends React.Component {
     let quiz = (
       <Quiz 
         handleClick={this.changeQuiz}
-        questions={this.state.questionsData}
+        currentQuestion={this.state.questionsData.results[this.state.questionIndex]}
         next={this.nextQuestion}
       />
     );
