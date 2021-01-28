@@ -81,11 +81,15 @@ class App extends React.Component {
           this.setState(function() {
             return {
               questionsData: jsonResponse,
-              errorMessage: null,
-              quizStarted: true
+              errorMessage: null
             }
           })
           this.addRandomOrderQuestions();
+          this.setState(function() {
+            return {
+              quizStarted: true
+            }
+          })
           return true;  
         } else if(jsonResponse.response_code === 1) {
           this.setState(function() {
@@ -118,6 +122,17 @@ class App extends React.Component {
         quizStarted: false,
         questionsData: null,
         questionIndex: 0
+      }
+    })
+  }
+
+  checkAnswer(e) {
+    let answer = e.currentTarget.value;
+    let check = this.state.questionsData.results[this.state.questionIndex].correct_answer === answer;
+    this.setState(function(prevState) {
+      prevState.questionsData.results[this.state.questionsData].isCorrect = check;
+      return {
+        questionsData: prevState
       }
     })
   }
@@ -157,7 +172,7 @@ class App extends React.Component {
     //   <Start 
     //     categories={this.state.categories}
     //     history={this.state.history}
-    //     handleChange={this.getQuestionFilters}
+    //     handle+ange={this.getQuestionFilters}
     //     startQuiz={this.getQuestionsData}
     //     errors={this.state.errorMessage}
     //   />
