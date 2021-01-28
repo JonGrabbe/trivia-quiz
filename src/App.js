@@ -71,11 +71,19 @@ class App extends React.Component {
       if(response.ok) {
         const jsonResponse = await response.json();
         if(jsonResponse.response_code === 0) {
-          this.setState({
+          /* this.setState({
             questionsData: jsonResponse,
             errorMessage: null,
             quizStarted: true
+          }) */
+          this.setState(function() {
+            return {
+              questionsData: jsonResponse,
+              errorMessage: null,
+              quizStarted: true
+            }
           })
+          this.addRandomOrderQuestions();
           return true;  
         } else if(jsonResponse.response_code === 1) {
           this.setState(function() {
@@ -111,6 +119,24 @@ class App extends React.Component {
     })
   }
   
+  addRandomOrderQuestions() {
+    function getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    function randomOrderInArray(array, item) {
+      let randomIndex = getRandomInt(0, array.length);
+      let newArray = array.map(item => item);
+      newArray.splice(randomIndex, 0, item);
+      return newArray;
+    }
+    this.setState(function(prevState) {
+      prevState.questionsData.results.forEach(item => {
+        item.randomOrderPossibleQuestions = randomOrderInArray(item.incorrect_answers, item.correct_answer)
+      })
+    })
+  }
 
   render() {
     let start = (
