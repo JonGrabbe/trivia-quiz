@@ -116,7 +116,8 @@ class App extends React.Component {
     this.setState(function() {
       return {
         quizStarted: false,
-        questionsData: null
+        questionsData: null,
+        questionIndex: 0
       }
     })
   }

@@ -15,7 +15,7 @@ export default class Quiz extends React.Component {
         
         return (
             <div id="quiz-container">
-                <Header handleClick={this.props.handleClick} questions={this.props.questions}/>
+                <Header handleClick={this.props.handleClick} currentQuestion={this.props.currentQuestion}/>
                 <div id="quiz-body-container">
                     <p>{this.props.currentQuestion.question}</p>
                     <ul>

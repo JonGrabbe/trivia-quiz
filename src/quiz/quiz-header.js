@@ -1,5 +1,5 @@
 export default function QuizHeader(props) {
-    let currentQuestion = props.questions.results[0];
+    let currentQuestion = props.currentQuestion;
     return (
         <header className="header">
             <h1>Trivia quiz</h1>
