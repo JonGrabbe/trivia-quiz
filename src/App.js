@@ -10,12 +10,14 @@ class App extends React.Component {
       history: 'ddd',
       searchFilters: {},
       defaultQuestionLimit: 10,
-      quizStarted: false
+      quizStarted: false,
+      questionIndex: 0
     }
     this.getQuestionFilters = this.getQuestionFilters.bind(this);
     this.getEndpoint = this.getEndpoint.bind(this);
     this.getQuestionsData = this.getQuestionsData.bind(this);
     this.changeQuiz = this.changeQuiz.bind(this);
+    this.nextQuestion = this.nextQuestion.bind(this);
   }
 
   async getCategoriesData() {
@@ -138,6 +140,17 @@ class App extends React.Component {
     })
   }
 
+  nextQuestion() {
+    let limit = this.state.questionsData.results.length - 1;
+    if(this.state.questionIndex < limit) {
+      this.setState(function(prevState) {
+          return {
+              questionIndex: prevState.questionIndex + 1
+          }
+      })
+    }
+  }
+
   render() {
     let start = (
       <Start 
@@ -152,6 +165,7 @@ class App extends React.Component {
       <Quiz 
         handleClick={this.changeQuiz}
         questions={this.state.questionsData}
+        next={this.nextQuestion}
       />
     );
     let quizStarted = this.state.quizStarted;
