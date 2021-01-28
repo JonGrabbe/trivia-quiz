@@ -176,7 +176,21 @@ class App extends React.Component {
       html = start
     }
     return (
-      <div>{html}</div>
+      <div>
+        {
+          this.state.quizStarted ? <Quiz 
+                                      handleClick={this.changeQuiz}
+                                      currentQuestion={this.state.questionsData.results[this.state.questionIndex]}
+                                      next={this.nextQuestion}
+                                    />
+                                  :
+                                  <Quiz 
+                                    handleClick={this.changeQuiz}
+                                    currentQuestion={this.state.questionsData.results[this.state.questionIndex]}
+                                    next={this.nextQuestion}
+                                  /> 
+        }
+      </div>
     )
   }
 }
