@@ -208,7 +208,6 @@ class App extends React.Component {
                                       handleClick={this.changeQuiz}
                                       currentQuestion={this.state.questionsData.results[this.state.questionIndex]}
                                       next={this.nextQuestion}
-                                      checkAnswer={this.checkAnswer}
                                     />
                                   :
                                   <Start 

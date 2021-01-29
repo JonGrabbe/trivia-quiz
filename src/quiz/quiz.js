@@ -6,14 +6,27 @@ export default class Quiz extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentQuestionIndex: 0
+            answerObjects: [],
+            radioButtonValue: undefined
         }
+        this.checkAnswer = this.checkAnswer.bind(this);
+        this.getRadioButtonValue = this.getRadioButtonValue.bind(this);
+    }
+
+
+    checkAnswer() {
+        
+    }
+
+    getRadioButtonValue(e) {
+        let val = e.currentTarget.value;
+        this.setState(() => {
+            return {radioButtonValue: val}
+        })
     }
 
 
     render() {
-        //let currentQuestion = this.props.questions.results[this.state.currentQuestionIndex];
-        
         return (
             <div id="quiz-container">
                 <Header handleClick={this.props.handleClick} currentQuestion={this.props.currentQuestion}/>
@@ -26,11 +39,12 @@ export default class Quiz extends React.Component {
                                     value={item}
                                     id={i}
                                     lableText={item}
-                                    checkAnswer={this.props.checkAnswer}
+                                    handleChange={this.getRadioButtonValue}
                                 />
                             )
                         })}    
                     </ul>
+                    <button onClick={this.checkAnswer}>check</button>
                     <button onClick={this.props.next}>next</button>
                 </div>
             </div>
