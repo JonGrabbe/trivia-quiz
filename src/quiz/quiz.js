@@ -21,11 +21,14 @@ export default class Quiz extends React.Component {
                     <p>{this.props.currentQuestion.question}</p>
                     <ul>
                         {this.props.currentQuestion.randomOrderPossibleQuestions.map((item, i) => {
-                           return ( <RadioFormControl 
-                                value={item}
-                                id={i}
-                                lableText={item}
-                            />)
+                           return ( 
+                                <RadioFormControl 
+                                    value={item}
+                                    id={i}
+                                    lableText={item}
+                                    checkAnswer={this.props.checkAnswer}
+                                />
+                            )
                         })}    
                     </ul>
                     <button onClick={this.props.next}>next</button>

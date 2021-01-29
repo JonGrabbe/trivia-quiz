@@ -18,6 +18,7 @@ class App extends React.Component {
     this.getQuestionsData = this.getQuestionsData.bind(this);
     this.changeQuiz = this.changeQuiz.bind(this);
     this.nextQuestion = this.nextQuestion.bind(this);
+    this.checkAnswer = this.checkAnswer.bind(this);
   }
 
   async getCategoriesData() {
@@ -126,13 +127,20 @@ class App extends React.Component {
     })
   }
 
+  get currentQuestion() {
+    return this.state.questionsData.results[this.state.questionIndex]
+  }
+
   checkAnswer(e) {
     let answer = e.currentTarget.value;
-    let check = this.state.questionsData.results[this.state.questionIndex].correct_answer === answer;
+    // let check = this.state.questionsData.results[this.state.questionIndex].correct_answer === answer;
+    let check = this.currentQuestion.correct_answer === answer;
+    console.log(this.currentQuestion)
+    console.log(check)
+    let currentIndex = this.state.questionIndex;
     this.setState(function(prevState) {
-      prevState.questionsData.results[this.state.questionsData].isCorrect = check;
       return {
-        questionsData: prevState
+        questionsData: prevState.results[currentIndex].isCorrect = check
       }
     })
   }
@@ -167,6 +175,8 @@ class App extends React.Component {
     }
   }
 
+
+
   render() {
     // let start = (
     //   <Start 
@@ -198,6 +208,7 @@ class App extends React.Component {
                                       handleClick={this.changeQuiz}
                                       currentQuestion={this.state.questionsData.results[this.state.questionIndex]}
                                       next={this.nextQuestion}
+                                      checkAnswer={this.checkAnswer}
                                     />
                                   :
                                   <Start 
